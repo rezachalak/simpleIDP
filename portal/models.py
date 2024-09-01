@@ -1,8 +1,20 @@
 from django.db import models
 from django_softdelete.models import SoftDeleteModel
 
-possible_provider = (('AWS','Amazon Web Service'), ('GCP','Google Cloud Provider'), ('Azure','Microsoft Azure'))
-cluster_status_enum = ((1,'running'), (2,'stopped'), (3,'deprovisioning'), (4,'deprovisioning_failed'), (5,'provisioning'), (6,'provisioning_failed'))
+possible_provider = (
+    ("AWS", "Amazon Web Service"),
+    ("GCP", "Google Cloud Provider"),
+    ("Azure", "Microsoft Azure"),
+)
+cluster_status_enum = (
+    (1, "running"),
+    (2, "stopped"),
+    (3, "deprovisioning"),
+    (4, "deprovisioning_failed"),
+    (5, "provisioning"),
+    (6, "provisioning_failed"),
+)
+
 
 class Cloud(SoftDeleteModel):
     name = models.CharField(max_length=100)
@@ -19,7 +31,8 @@ class Cloud(SoftDeleteModel):
     is_locked = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.name + ' (' + self.provider + ')'
+        return self.name + " (" + self.provider + ")"
+
 
 class Cluster(SoftDeleteModel):
     name = models.CharField(max_length=100)
@@ -37,7 +50,18 @@ class Cluster(SoftDeleteModel):
     is_expired = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.name + ' on ' + self.cloud.name + ' with ' + self.size + ' of ' + self.type + ' type is ' + self.status
+        return (
+            self.name
+            + " on "
+            + self.cloud.name
+            + " with "
+            + self.size
+            + " of "
+            + self.type
+            + " type is "
+            + self.status
+        )
+
 
 class Project(SoftDeleteModel):
     name = models.CharField(max_length=100)
@@ -52,4 +76,16 @@ class Project(SoftDeleteModel):
     is_suspended = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.name + ' in ' + self.cluster.name + ' on ' + self.cluster.cloud.name + ' with ' + self.cluster.size + ' of ' + self.cluster.type + ' type is ' + self.cluster.status
+        return (
+            self.name
+            + " in "
+            + self.cluster.name
+            + " on "
+            + self.cluster.cloud.name
+            + " with "
+            + self.cluster.size
+            + " of "
+            + self.cluster.type
+            + " type is "
+            + self.cluster.status
+        )
