@@ -25,6 +25,8 @@ from django.urls import include, path
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path("api/", include("portal.api_urls")),
+    path("", include("portal.urls")),
 ]
 
 if settings.DEBUG:
