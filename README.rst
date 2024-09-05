@@ -1,2 +1,3 @@
-# simpleIDP
-An Internal Developer Portal to streamline building infrasture within an organization using CLI
+### **Simple IDP**
+
+**SimpleIDP** is an Internal Developer Portal designed to manage multi-cloud environments, Kubernetes clusters, and project deployments seamlessly. With a user-friendly interface and robust backend powered by Django and React, SimpleIDP simplifies infrastructure management for development teams.
